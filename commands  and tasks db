@@ -109,3 +109,10 @@ SELECT t.id, t.country, t.hotel, t.review , c.country_name country, COUNT(c.id) 
  WHERE c.country_name = "Germany"
  GROUP BY t.id;
  
+  -- find tours which users ordered to "Germany" with review "Overview tour"
+SELECT t.id, t.country, t.hotel, t.review , c.country_name country, COUNT(c.id) number_orders
+ FROM travel_agency.user u JOIN travel_agency.order o ON u.id = o.user_id
+ JOIN  travel_agency.tour t ON o.tour_id = t.id
+ JOIN travel_agency.country c ON t.country = c.id 
+ GROUP BY t.id having t.review = "Overview tour";
+ 
