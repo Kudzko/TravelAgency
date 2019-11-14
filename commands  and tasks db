@@ -1,0 +1,111 @@
+CREATE SCHEMA IF NOT EXISTS `travel_agency`;
+
+CREATE TABLE `travel_agency`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `surname` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `travel_agency`.`hotel` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `stars` SMALLINT(5) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `travel_agency`.`country` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `country_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `travel_agency`.`order` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NULL,
+  `tour_id` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `travel_agency`.`tour` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `country` INT NULL,
+  `hotel` INT NULL,
+  `review` VARCHAR(300) NULL,
+  PRIMARY KEY (`id`));
+
+#Data
+
+INSERT INTO `travel_agency`.`country` (`country_name`) VALUES ('France');
+INSERT INTO `travel_agency`.`country` (`country_name`) VALUES ('Germany');
+INSERT INTO `travel_agency`.`country` (`country_name`) VALUES ('Belarus');
+INSERT INTO `travel_agency`.`country` (`country_name`) VALUES ('Poland');
+INSERT INTO `travel_agency`.`country` (`country_name`) VALUES ('Cheh republic');
+INSERT INTO `travel_agency`.`country` (`country_name`) VALUES ('Holand');
+INSERT INTO `travel_agency`.`country` (`country_name`) VALUES ('Greek');
+INSERT INTO `travel_agency`.`country` (`country_name`) VALUES ('Italy');
+
+INSERT INTO `travel_agency`.`hotel` (`name`, `stars`) VALUES ('Double tree', '4');
+INSERT INTO `travel_agency`.`hotel` (`name`, `stars`) VALUES ('Park Inn by Rodisson', '5');
+INSERT INTO `travel_agency`.`hotel` (`name`, `stars`) VALUES ('MEININGER Hotel', '4');
+INSERT INTO `travel_agency`.`hotel` (`name`, `stars`) VALUES ('Budget', '3');
+
+INSERT INTO `travel_agency`.`user` (`name`, `surname`) VALUES ('Ivan', 'Ivanov');
+INSERT INTO `travel_agency`.`user` (`name`, `surname`) VALUES ('Petr', 'Petrov');
+INSERT INTO `travel_agency`.`user` (`name`, `surname`) VALUES ('Sergey', 'Sidorov');
+INSERT INTO `travel_agency`.`user` (`name`, `surname`) VALUES ('John', 'Bolt');
+INSERT INTO `travel_agency`.`user` (`name`, `surname`) VALUES ('Greg', 'James');
+INSERT INTO `travel_agency`.`user` (`name`, `surname`) VALUES ('Maya', 'Jama');
+
+INSERT INTO `travel_agency`.`tour` (`country`, `hotel`, `review`) VALUES ('2', '2', 'Facinating tour in Germany');
+INSERT INTO `travel_agency`.`tour` (`country`, `hotel`, `review`) VALUES ('2', '1', 'Overview tour');
+
+INSERT INTO `travel_agency`.`order` (`user_id`, `tour_id`) VALUES ('1', '1');
+INSERT INTO `travel_agency`.`order` (`user_id`, `tour_id`) VALUES ('2', '2');
+INSERT INTO `travel_agency`.`order` (`user_id`, `tour_id`) VALUES ('1', '2');
+INSERT INTO `travel_agency`.`order` (`user_id`, `tour_id`) VALUES ('3', '2');
+INSERT INTO `travel_agency`.`order` (`user_id`, `tour_id`) VALUES ('4', '1');
+INSERT INTO `travel_agency`.`order` (`user_id`, `tour_id`) VALUES ('5', '1');
+INSERT INTO `travel_agency`.`order` (`user_id`, `tour_id`) VALUES ('6', '1');
+
+
+#JOINS
+	-- select users which made order
+SELECT u.name, u.surname
+ FROM travel_agency.user u JOIN travel_agency.order o
+ ON u.id = o.user_id;
+ 
+-- select users which made order
+SELECT distinct  u.name, u.surname
+ FROM travel_agency.user u JOIN travel_agency.order o
+ ON u.id = o.user_id;
+ 
+-- select users which made order
+SELECT u.name, u.surname
+ FROM travel_agency.user u JOIN travel_agency.order o
+ ON u.id = o.user_id GROUP BY u.surname;
+ 
+-- select users who haven't made order
+SELECT u.name, u.surname
+ FROM travel_agency.user u LEFT JOIN travel_agency.order o
+ ON u.id = o.user_id Where o.user_id Is null;
+ 
+-- Count how many tours have users ordered
+SELECT u.name, u.surname, COUNT(o.user_id) how_many
+ FROM travel_agency.user u LEFT JOIN travel_agency.order o
+ ON u.id = o.user_id GROUP BY u.surname;
+ 
+-- find tours which users ordered
+SELECT t.id, t.country, t.hotel, t.review 
+ FROM travel_agency.user u JOIN travel_agency.order o
+ ON u.id = o.user_id  JOIN  travel_agency.tour t ON o.tour_id = t.id;
+ 
+-- find tours which users ordered
+SELECT t.id, t.country, t.hotel, t.review , COUNT(t.id) number_oders
+ FROM travel_agency.user u JOIN travel_agency.order o
+ ON u.id = o.user_id  JOIN  travel_agency.tour t ON o.tour_id = t.id group by t.id;
+ 
+-- find tours which users ordered to "Germany"
+SELECT t.id, t.country, t.hotel, t.review , c.country_name country, COUNT(c.id) number_orders
+ FROM travel_agency.user u JOIN travel_agency.order o ON u.id = o.user_id
+ JOIN  travel_agency.tour t ON o.tour_id = t.id
+ JOIN travel_agency.country c ON t.country = c.id 
+ WHERE c.country_name = "Germany"
+ GROUP BY t.id;
+ 
