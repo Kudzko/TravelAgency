@@ -1,6 +1,5 @@
 package by.andersen.kudko.webapp.dao;
 
-import by.andersen.kudko.webapp.dao.daoobjectdesc.CountryDAODesc;
 import by.andersen.kudko.webapp.model.entity.Country;
 
 import java.sql.Connection;
@@ -21,7 +20,7 @@ public class CountryDAO extends AbstractDAO<Country, Integer> {
 
     @Override
     public void createPrpStmt(Country entity, PreparedStatement prpStmt) throws SQLException {
-        CountryDAODesc.preparedStatementDescription(entity, prpStmt);
+        countryDescription(entity, prpStmt);
     }
 
     @Override
@@ -31,10 +30,13 @@ public class CountryDAO extends AbstractDAO<Country, Integer> {
 
     @Override
     public void updatePrpStmt(Country entity, PreparedStatement prpStmt) throws SQLException {
-        CountryDAODesc.preparedStatementDescription(entity, prpStmt);
+        countryDescription(entity, prpStmt);
         prpStmt.setInt(2, entity.getId());
     }
 
+    private void countryDescription(Country entity, PreparedStatement prpStmt) throws SQLException {
+        prpStmt.setString(1, entity.getCountryName());
+    }
     @Override
     public String deleteSql() {
         return DELETE_BY_ID;
@@ -53,8 +55,8 @@ public class CountryDAO extends AbstractDAO<Country, Integer> {
     @Override
     public Country resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
         Country country = new Country();
-        CountryDAODesc.resultsetStringToObjectDescription(country, resultSet);
-
+        country.setId(resultSet.getInt("id"));
+        country.setCountryName(resultSet.getString("country_name"));
         return country;
     }
 }

@@ -1,8 +1,9 @@
 package by.andersen.kudko.webapp.dao;
 
-import by.andersen.kudko.webapp.dao.daoobjectdesc.OrderDAODesc;
 import by.andersen.kudko.webapp.dao.exception.DAOException;
 import by.andersen.kudko.webapp.model.entity.Order;
+import by.andersen.kudko.webapp.model.entity.Tour;
+import by.andersen.kudko.webapp.model.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class OrderDAO extends AbstractDAO<Order, Integer> {
 
     @Override
     public void createPrpStmt(Order entity, PreparedStatement prpStmt) throws SQLException {
-        OrderDAODesc.preparedStatementDescription(entity, prpStmt);
+        orderDescription(entity, prpStmt);
     }
 
     @Override
@@ -32,8 +33,13 @@ public class OrderDAO extends AbstractDAO<Order, Integer> {
 
     @Override
     public void updatePrpStmt(Order entity, PreparedStatement prpStmt) throws SQLException {
-        OrderDAODesc.preparedStatementDescription(entity, prpStmt);
+        orderDescription(entity, prpStmt);
         prpStmt.setInt(3, entity.getId());
+    }
+
+    private void orderDescription(Order entity, PreparedStatement prpStmt) throws SQLException {
+        prpStmt.setInt(1, entity.getUser().getId());
+        prpStmt.setInt(2, entity.getTour().getId());
     }
 
     @Override
@@ -54,7 +60,18 @@ public class OrderDAO extends AbstractDAO<Order, Integer> {
     @Override
     public Order resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException {
         Order order = new Order();
-        OrderDAODesc.resultsetStringToObjectDescription(order, resultSet, connection);
+        // gets id
+        order.setId(resultSet.getInt("id"));
+
+        // gets user
+        Integer userId = resultSet.getInt("user_id");
+        User user = (User) getDependentEntityById(User.class, connection, userId);
+        order.setUser(user);
+
+        // gets tour
+        Integer tourId = resultSet.getInt("tour_id");
+        Tour tour = (Tour) getDependentEntityById(Tour.class, connection, tourId);
+        order.setTour(tour);
         return order;
     }
 }

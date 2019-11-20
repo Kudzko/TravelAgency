@@ -271,4 +271,14 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
     public FactoryDAO getFactoryDAO() {
         return factoryDAO;
     }
+
+    public Entity getDependentEntityById(Class entityClass, Connection connection, Integer id) throws DAOException {
+        Entity entity;
+        FactoryDAO factoryDAO = FactoryDAO.getInstance();
+        AbstractDAO dao = factoryDAO.getDAO(entityClass);
+        dao.setConnection(connection);
+        entity = dao.getByPK(id);
+        dao.releaseConnectionFromDAO();
+        return entity;
+    }
 }

@@ -1,6 +1,8 @@
 package by.andersen.kudko.webapp.dao;
 
-import by.andersen.kudko.webapp.dao.daoobjectdesc.TourDAODesc;
+import by.andersen.kudko.webapp.dao.exception.DAOException;
+import by.andersen.kudko.webapp.model.entity.Country;
+import by.andersen.kudko.webapp.model.entity.Hotel;
 import by.andersen.kudko.webapp.model.entity.Tour;
 
 import java.sql.Connection;
@@ -22,7 +24,7 @@ public class TourDAO extends AbstractDAO<Tour, Integer> {
 
     @Override
     public void createPrpStmt(Tour entity, PreparedStatement prpStmt) throws SQLException {
-        TourDAODesc.preparedStatementDescription(entity, prpStmt);
+        tourDescription(entity, prpStmt);
     }
 
     @Override
@@ -32,8 +34,14 @@ public class TourDAO extends AbstractDAO<Tour, Integer> {
 
     @Override
     public void updatePrpStmt(Tour entity, PreparedStatement prpStmt) throws SQLException {
-        TourDAODesc.preparedStatementDescription(entity, prpStmt);
+        tourDescription(entity, prpStmt);
         prpStmt.setInt(4, entity.getId());
+    }
+
+    private void tourDescription(Tour entity, PreparedStatement prpStmt) throws SQLException {
+        prpStmt.setInt(1, entity.getCountry().getId());
+        prpStmt.setInt(2, entity.getHotel().getId());
+        prpStmt.setString(3, entity.getReview());
     }
 
     @Override
@@ -52,9 +60,25 @@ public class TourDAO extends AbstractDAO<Tour, Integer> {
     }
 
     @Override
-    public Tour resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
+    public Tour resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException {
         Tour tour = new Tour();
-        TourDAODesc.resultsetStringToObjectDescription(tour, resultSet, conn);
+
+        // get id
+        tour.setId(resultSet.getInt("id"));
+
+        // gets county entity
+        Integer countyId = resultSet.getInt("country");
+        Country country = (Country) getDependentEntityById(Country.class, connection, countyId);
+        tour.setCountry(country);
+
+        // gets Hotel entity
+        Integer hotelId = resultSet.getInt("hotel");
+        Hotel hotel = (Hotel) getDependentEntityById(Hotel.class, connection, hotelId);
+        tour.setHotel(hotel);
+
+        // gets review
+        tour.setReview(resultSet.getString("review"));
+
         return tour;
     }
 }

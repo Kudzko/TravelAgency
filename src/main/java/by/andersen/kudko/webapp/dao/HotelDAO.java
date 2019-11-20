@@ -1,6 +1,5 @@
 package by.andersen.kudko.webapp.dao;
 
-import by.andersen.kudko.webapp.dao.daoobjectdesc.HotelDAODesc;
 import by.andersen.kudko.webapp.model.entity.Hotel;
 
 import java.sql.Connection;
@@ -21,7 +20,7 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
     }
     @Override
     public void createPrpStmt(Hotel entity, PreparedStatement prpStmt) throws SQLException {
-        HotelDAODesc.preparedStatementDescription(entity, prpStmt);
+        hotelDescription(entity, prpStmt);
     }
 
     @Override
@@ -31,8 +30,13 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
 
     @Override
     public void updatePrpStmt(Hotel entity, PreparedStatement prpStmt) throws SQLException {
-        HotelDAODesc.preparedStatementDescription(entity, prpStmt);
+        hotelDescription(entity, prpStmt);
         prpStmt.setInt(3, entity.getId());
+    }
+
+    private void hotelDescription(Hotel entity, PreparedStatement prpStmt) throws SQLException {
+        prpStmt.setString(1, entity.getHotelName());
+        prpStmt.setInt(2, entity.getStars());
     }
 
     @Override
@@ -53,7 +57,9 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
     @Override
     public Hotel resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
         Hotel hotel = new Hotel();
-        HotelDAODesc.resultsetStringToObjectDescription(hotel , resultSet);
+        hotel.setId(resultSet.getInt("id"));
+        hotel.setHotelName(resultSet.getString("name"));
+        hotel.setStars(resultSet.getInt("stars"));
         return hotel;
     }
 }

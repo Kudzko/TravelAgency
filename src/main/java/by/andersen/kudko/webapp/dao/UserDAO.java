@@ -1,6 +1,5 @@
 package by.andersen.kudko.webapp.dao;
 
-import by.andersen.kudko.webapp.dao.daoobjectdesc.UserDescription;
 import by.andersen.kudko.webapp.model.entity.User;
 
 import java.sql.Connection;
@@ -21,7 +20,7 @@ public class UserDAO extends AbstractDAO<User, Integer> {
 
     @Override
     public void createPrpStmt(User entity, PreparedStatement prpStmt) throws SQLException {
-        UserDescription.preparedStatementDescription(entity, prpStmt);
+        userDescription(entity, prpStmt);
     }
 
     @Override
@@ -31,8 +30,14 @@ public class UserDAO extends AbstractDAO<User, Integer> {
 
     @Override
     public void updatePrpStmt(User entity, PreparedStatement prpStmt) throws SQLException {
-        UserDescription.preparedStatementDescription(entity, prpStmt);
+        userDescription(entity, prpStmt);
         prpStmt.setInt(4, entity.getId());
+    }
+
+    private void userDescription(User entity, PreparedStatement prpStmt) throws SQLException {
+        prpStmt.setString(1, entity.getName());
+        prpStmt.setString(2, entity.getSurname());
+        prpStmt.setString(3, entity.getNickName());
     }
 
     @Override
@@ -54,7 +59,10 @@ public class UserDAO extends AbstractDAO<User, Integer> {
     public User resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
         User user = new User();
 
-        UserDescription.resultsetStringToObjectDescription(user, resultSet);
+        user.setId(resultSet.getInt("id"));
+        user.setName(resultSet.getString("name"));
+        user.setSurname(resultSet.getString("surname"));
+        user.setNickName(resultSet.getString("nickname"));
 
         return user;
     }
