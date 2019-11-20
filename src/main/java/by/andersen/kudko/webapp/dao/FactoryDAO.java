@@ -1,6 +1,6 @@
 package by.andersen.kudko.webapp.dao;
 
-import by.andersen.kudko.webapp.dao.exception.DAOException;
+import by.andersen.kudko.webapp.dao.daointerface.IFactoryDAO;
 import by.andersen.kudko.webapp.model.entity.*;
 
 import java.util.HashMap;

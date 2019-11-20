@@ -60,7 +60,7 @@ public class Test {
                 OrderDAO orderDAO = (OrderDAO) factoryDAO.getDAO(Order.class);
                 orderDAO.setConnection(con);
                 orderDAO.create(order);
-                orderDAO.releaseConnectionFromDAO();
+                orderDAO.removeConnection();
 
 
 

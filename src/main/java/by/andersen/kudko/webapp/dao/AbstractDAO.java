@@ -225,7 +225,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
      *
      * @return
      */
-    public Connection releaseConnectionFromDAO() {
+    public Connection removeConnection() {
         Connection connection = getConnection();
         this.conn = null;
         lock.unlock();
@@ -245,7 +245,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
                 } catch (IllegalAccessException ex) {
                     ex.printStackTrace();
                 } finally {
-                    dao.releaseConnectionFromDAO();
+                    dao.removeConnection();
                 }
             }
 
@@ -277,7 +277,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
         AbstractDAO dao = factoryDAO.getDAO(entityClass);
         dao.setConnection(connection);
         entity = dao.getById(id);
-        dao.releaseConnectionFromDAO();
+        dao.removeConnection();
         return entity;
     }
 }
