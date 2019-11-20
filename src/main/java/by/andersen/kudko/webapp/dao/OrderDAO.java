@@ -1,21 +1,23 @@
 package by.andersen.kudko.webapp.dao;
 
 import by.andersen.kudko.webapp.dao.daoobjectdesc.OrderDAODesc;
+import by.andersen.kudko.webapp.dao.exception.DAOException;
 import by.andersen.kudko.webapp.model.entity.Order;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OrderDAO extends AbstractDAO<Order, Integer> {
-    public final String INSERT_USER = "INSERT INTO `travel_agency`.`order` (`user_id`, `country_id`) VALUES (?, ?);";
-    public final String FIND_BY_PK = "SELECT `id`,`user_id`, `country_id`  FROM `travel_agency`.`order` u WHERE u.id = ?;";
-    public final String UPDATE_BY_ID = " UPDATE `travel_agency`.`order` SET `user_id` = ?, `country_id` = ? WHERE `id` = ?;";
+    public final String INSERT_ORDER = "INSERT INTO `travel_agency`.`order` (`user_id`, `tour_id`) VALUES (?, ?);";
+    public final String FIND_BY_PK = "SELECT `id`,`user_id`, `tour_id`  FROM `travel_agency`.`order` u WHERE u.id = ?;";
+    public final String UPDATE_BY_ID = " UPDATE `travel_agency`.`order` SET `user_id` = ?, `tour_id` = ? WHERE `id` = ?;";
     public final String DELETE_BY_ID = " DELETE FROM `travel_agency`.`order` WHERE (`id` = ?);";
 
     @Override
     public String createQuery() {
-        return INSERT_USER;
+        return INSERT_ORDER;
     }
 
     @Override
@@ -50,9 +52,9 @@ public class OrderDAO extends AbstractDAO<Order, Integer> {
     }
 
     @Override
-    public Order resultsetStringToObject(ResultSet resultSet) throws SQLException {
+    public Order resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException {
         Order order = new Order();
-        OrderDAODesc.resultsetStringToObjectDescription(order, resultSet);
+        OrderDAODesc.resultsetStringToObjectDescription(order, resultSet, connection);
         return order;
     }
 }

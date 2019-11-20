@@ -3,6 +3,7 @@ package by.andersen.kudko.webapp.dao;
 import by.andersen.kudko.webapp.dao.daoobjectdesc.HotelDAODesc;
 import by.andersen.kudko.webapp.model.entity.Hotel;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,7 +51,7 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
     }
 
     @Override
-    public Hotel resultsetStringToObject(ResultSet resultSet) throws SQLException {
+    public Hotel resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
         Hotel hotel = new Hotel();
         HotelDAODesc.resultsetStringToObjectDescription(hotel , resultSet);
         return hotel;

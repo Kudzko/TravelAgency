@@ -1,6 +1,7 @@
 package by.andersen.kudko.webapp.dao.daoobjectdesc;
 
 import by.andersen.kudko.webapp.dao.AbstractDAO;
+import by.andersen.kudko.webapp.dao.FactoryDAO;
 import by.andersen.kudko.webapp.dao.connection.ConnectionPoolException;
 import by.andersen.kudko.webapp.dao.connection.second.ConnectionPool;
 import by.andersen.kudko.webapp.dao.exception.DAOException;
@@ -11,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class TourDAODesc {
+public final class TourDAODesc extends BaseDesc {
     private TourDAODesc() {
     }
 
@@ -27,116 +28,20 @@ public final class TourDAODesc {
 
         try {
             // gets county entity
-            AbstractDAO tempCountryDAO = new AbstractDAO() {
-                @Override
-                public String createQuery() {
-                    return null;
-                }
-
-                @Override
-                public void createPrpStmt(Entity entity, PreparedStatement prpStmt) throws SQLException {
-
-                }
-
-                @Override
-                public String updateSql() {
-                    return null;
-                }
-
-                @Override
-                public void updatePrpStmt(Entity entity, PreparedStatement prpStmt) throws SQLException {
-
-                }
-
-                @Override
-                public String deleteSql() {
-                    return null;
-                }
-
-                @Override
-                public void deletePrpStmt(Entity entity, PreparedStatement prpStmt) throws SQLException {
-
-                }
-
-                @Override
-                public String getByPKSQL() {
-                    return "SELECT `id`,`name` FROM `travel_agency`.`country` u WHERE u.id = ?;";
-                }
-
-                @Override
-                public Entity resultsetStringToObject(ResultSet resultSet) throws SQLException {
-                    Country country = new Country();
-                    CountryDAODesc.resultsetStringToObjectDescription(country, resultSet);
-                    return country;
-                }
-            };
-
-
-            tempCountryDAO.setConnection(connection);
             Integer countyId = resultSet.getInt("country");
-            Country country = (Country) tempCountryDAO.getByPK(countyId);
+            Country country = (Country) getEntityById(Country.class, connection, countyId);
             entity.setCountry(country);
 
-
-
             // gets Hotel entity
-            AbstractDAO tempHotelDAO = new AbstractDAO() {
-                @Override
-                public String createQuery() {
-                    return null;
-                }
-
-                @Override
-                public void createPrpStmt(Entity entity, PreparedStatement prpStmt) throws SQLException {
-
-                }
-
-                @Override
-                public String updateSql() {
-                    return null;
-                }
-
-                @Override
-                public void updatePrpStmt(Entity entity, PreparedStatement prpStmt) throws SQLException {
-
-                }
-
-                @Override
-                public String deleteSql() {
-                    return null;
-                }
-
-                @Override
-                public void deletePrpStmt(Entity entity, PreparedStatement prpStmt) throws SQLException {
-
-                }
-
-                @Override
-                public String getByPKSQL() {
-                    return "SELECT `id`,`name`, `stars` FROM `travel_agency`.`hotel` u WHERE u.id = ?;";
-                }
-
-                @Override
-                public Entity resultsetStringToObject(ResultSet resultSet) throws SQLException {
-                    Hotel hotel = new Hotel();
-                    HotelDAODesc.resultsetStringToObjectDescription(hotel, resultSet);
-                    return hotel;
-                }
-            };
-
-
-            tempHotelDAO.setConnection(tempCountryDAO.releaseConnectionFromDAO());
             Integer hotelId = resultSet.getInt("hotel");
-            Hotel hotel = (Hotel) tempCountryDAO.getByPK(hotelId);
+            Hotel hotel = (Hotel) getEntityById(Hotel.class, connection, hotelId);
             entity.setHotel(hotel);
-            tempHotelDAO.releaseConnectionFromDAO();
-
-
         } catch (DAOException e) {
             e.printStackTrace();
         }
 
         entity.setReview(resultSet.getString("review"));
     }
+
 
 }

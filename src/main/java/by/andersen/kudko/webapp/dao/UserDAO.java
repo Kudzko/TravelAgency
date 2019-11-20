@@ -3,6 +3,7 @@ package by.andersen.kudko.webapp.dao;
 import by.andersen.kudko.webapp.dao.daoobjectdesc.UserDescription;
 import by.andersen.kudko.webapp.model.entity.User;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,7 +51,7 @@ public class UserDAO extends AbstractDAO<User, Integer> {
     }
 
     @Override
-    public User resultsetStringToObject(ResultSet resultSet) throws SQLException {
+    public User resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
         User user = new User();
 
         UserDescription.resultsetStringToObjectDescription(user, resultSet);

@@ -5,6 +5,7 @@ import by.andersen.kudko.webapp.dao.exception.DAOException;
 import by.andersen.kudko.webapp.model.entity.Entity;
 import lombok.extern.log4j.Log4j2;
 
+import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.concurrent.locks.ReentrantLock;
 public abstract class AbstractDAO<E extends Entity, PK extends Integer> implements IAbstractDAO<E, PK> {
     protected Connection conn;
     private Lock lock;
+    private FactoryDAO factoryDAO;
 
     public AbstractDAO() {
-        lock = new ReentrantLock();
+        this.lock = new ReentrantLock();
+        this.factoryDAO = FactoryDAO.getInstance();
     }
 
     public abstract String createQuery();
@@ -34,14 +37,16 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
 
     public abstract String getByPKSQL();
 
-    public abstract E resultsetStringToObject(ResultSet resultSet) throws SQLException;
+    public abstract E resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException;
 
 
     @Override
     public E create(E entity) throws DAOException {
+
         if (entity.getId() != 0) {
             throw new DAOException("Entity has already been added in DB");
         }
+        saveDependencies(entity);
 
         PreparedStatement prpStmt = null;
         String sqlStmt = createQuery();
@@ -72,6 +77,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
             throw new DAOException("Can not create record into DB", e);
         } finally {
             try {
+                conn.commit();
                 conn.setAutoCommit(true);
             } catch (SQLException e) {
                 log.warn("Connection haven't switched on autocommit");
@@ -91,6 +97,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
     public int update(E entity) throws DAOException {
         int amountRows = 0;
         if (entity.getId() != 0) {
+            updateDependencies(entity);
             String sql = updateSql();
             PreparedStatement prpStmt = null;
             try {
@@ -102,7 +109,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
             } catch (SQLException e) {
                 log.warn("database access error occurs during update method operating", e);
                 throw new DAOException("database access error occurs during update method operating", e);
-            }finally {
+            } finally {
                 try {
                     conn.setAutoCommit(true);
                 } catch (SQLException e) {
@@ -128,7 +135,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
             String msg = "Something wrong with prepared statement in delete method";
             log.warn(msg);
             throw new DAOException(msg, e);
-        }finally {
+        } finally {
             try {
                 conn.setAutoCommit(true);
             } catch (SQLException e) {
@@ -155,20 +162,24 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
             String msg = "Error in DB access occured";
             log.warn(msg);
             throw new DAOException(msg, e);
-        }finally {
+        } finally {
             closeStatement(prpStmt);
         }
         if (objects.size() > 1) {
             throw new DAOException("Nonunique PK. More then one entity returned");
+        } else if (objects.size() == 1) {
+            return objects.get(0);
+        } else {
+            return null;
         }
-        return objects.get(0);
+
     }
 
     private List<E> resultsetToObjects(ResultSet resultSet) throws DAOException {
         List<E> entities = new ArrayList<>();
         try {
             while (resultSet.next()) {
-                E entity = resultsetStringToObject(resultSet);
+                E entity = resultsetStringToObject(resultSet, conn);
                 entities.add(entity);
             }
         } catch (SQLException e) {
@@ -222,4 +233,42 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
         return connection;
     }
 
+    private void saveDependencies(E e) throws DAOException {
+        Field[] fields = e.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            AbstractDAO dao = factoryDAO.getDAO(field.getType());
+
+            if (dao != null) {
+                try {
+                    field.setAccessible(true);
+                    dao.setConnection(conn);
+                    dao.create((Entity) field.get(e));
+                } catch (IllegalAccessException ex) {
+                    ex.printStackTrace();
+                } finally {
+                    dao.releaseConnectionFromDAO();
+                }
+            }
+
+        }
+
+    }
+
+    private void updateDependencies(E e) throws DAOException {
+
+        Field[] fields = e.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            log.trace(field.getClass());
+            AbstractDAO dao = factoryDAO.getDAO(field.getClass());
+
+            if (dao != null) {
+                dao.update(e);
+
+            }
+        }
+    }
+
+    public FactoryDAO getFactoryDAO() {
+        return factoryDAO;
+    }
 }

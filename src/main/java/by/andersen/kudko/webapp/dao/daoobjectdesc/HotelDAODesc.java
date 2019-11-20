@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class HotelDAODesc {
+public final class HotelDAODesc extends BaseDesc{
     private HotelDAODesc() {
     }
 
