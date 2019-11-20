@@ -1,4 +1,4 @@
-package by.andersen.kudko.webapp.dao.daoint;
+package by.andersen.kudko.webapp.dao.daointerface;
 
 import by.andersen.kudko.webapp.dao.exception.DAOException;
 import by.andersen.kudko.webapp.model.entity.Entity;
@@ -37,7 +37,7 @@ public interface IAbstractDAO<E extends Entity,
      * @param pk
      * @return
      */
-    E getByPK(PK pk) throws DAOException;
+    E getById(PK pk) throws DAOException;
 }
 
 

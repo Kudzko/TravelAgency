@@ -1,6 +1,6 @@
 package by.andersen.kudko.webapp.dao;
 
-import by.andersen.kudko.webapp.dao.daoint.IAbstractDAO;
+import by.andersen.kudko.webapp.dao.daointerface.IAbstractDAO;
 import by.andersen.kudko.webapp.dao.exception.DAOException;
 import by.andersen.kudko.webapp.model.entity.Entity;
 import lombok.extern.log4j.Log4j2;
@@ -77,7 +77,6 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
             throw new DAOException("Can not create record into DB", e);
         } finally {
             try {
-                conn.commit();
                 conn.setAutoCommit(true);
             } catch (SQLException e) {
                 log.warn("Connection haven't switched on autocommit");
@@ -147,7 +146,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
     }
 
     @Override
-    public E getByPK(PK pk) throws DAOException {
+    public E getById(PK pk) throws DAOException {
         String selectSQL = getByPKSQL();
         PreparedStatement prpStmt = null;
         ResultSet resultSet;
@@ -277,7 +276,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
         FactoryDAO factoryDAO = FactoryDAO.getInstance();
         AbstractDAO dao = factoryDAO.getDAO(entityClass);
         dao.setConnection(connection);
-        entity = dao.getByPK(id);
+        entity = dao.getById(id);
         dao.releaseConnectionFromDAO();
         return entity;
     }
