@@ -2,8 +2,6 @@ package by.andersen.kudko.dao;
 
 import by.andersen.kudko.dao.daointerface.IFactoryDAO;
 import by.andersen.kudko.model.entity.*;
-import by.andersen.kudko.webapp.model.entity.*;
-
 import java.util.HashMap;
 import java.util.Map;
 

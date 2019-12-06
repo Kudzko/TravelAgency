@@ -31,6 +31,9 @@
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="root"/>
             <property name="hibernate.show_sql" value="true"/>
+            <property
+                    name="javax.persistence.schema-generation.database.action"
+                    value="drop-and-create"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>

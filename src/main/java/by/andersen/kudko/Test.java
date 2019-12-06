@@ -8,7 +8,6 @@ import by.andersen.kudko.dao.connection.second.DBParameter;
 import by.andersen.kudko.dao.connection.second.DBResourceManager;
 import by.andersen.kudko.dao.exception.DAOException;
 import by.andersen.kudko.model.entity.*;
-import by.andersen.kudko.webapp.model.entity.*;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.*;
