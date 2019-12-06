@@ -8,9 +8,9 @@
 
     <persistence-unit name="Hibernate_JPA" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>by.andersen.kudko.webapp.jpaentity.User</class>
-        <class>by.andersen.kudko.webapp.jpaentity.Category</class>
-        <class>by.andersen.kudko.webapp.jpaentity.Topic</class>
+        <class>by.andersen.kudko.jpaentity.User</class>
+        <class>by.andersen.kudko.jpaentity.Category</class>
+        <class>by.andersen.kudko.jpaentity.Topic</class>
 
         <properties>
             <!--            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/travel_agency"/>-->
