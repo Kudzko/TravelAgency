@@ -60,7 +60,7 @@ public class TourDAO extends AbstractDAO<Tour, Integer> {
     }
 
     @Override
-    public Tour resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException {
+    public Tour resultsetToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException {
         Tour tour = new Tour();
 
         // get id

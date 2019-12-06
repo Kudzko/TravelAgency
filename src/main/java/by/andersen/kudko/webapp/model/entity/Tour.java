@@ -2,7 +2,7 @@ package by.andersen.kudko.webapp.model.entity;
 
 import java.util.Objects;
 
-public class Tour extends Entity {
+public class Tour extends BEntity {
     private Hotel hotel;
     private Country country;
     private String review;

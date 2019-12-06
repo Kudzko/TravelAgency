@@ -1,9 +1,9 @@
 package by.andersen.kudko.webapp.dao.daointerface;
 
 import by.andersen.kudko.webapp.dao.exception.DAOException;
-import by.andersen.kudko.webapp.model.entity.Entity;
+import by.andersen.kudko.webapp.model.entity.BEntity;
 
-public interface IAbstractDAO<E extends Entity,
+public interface IAbstractDAO<E extends BEntity,
         PK extends Integer> {
 
     /**

@@ -1,0 +1,32 @@
+<? xml version="1.0" encoding="UTF-8" ?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+   http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                 version="1.0">
+
+    <description> XML Mapping file</description>
+
+    <entity class="User">
+        <table name="user"/>
+        <attributes>
+
+            <id name="id">
+                <generated-value strategy="TABLE"/>
+            </id>
+
+            <basic name="name">
+                <column name="EMP_NAME" length="100"/>
+            </basic>
+
+            <basic name="surname">
+            </basic>
+
+            <basic name="nickname">
+            </basic>
+
+        </attributes>
+    </entity>
+
+</entity-mappings>

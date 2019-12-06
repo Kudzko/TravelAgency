@@ -53,7 +53,7 @@ public class CountryDAO extends AbstractDAO<Country, Integer> {
     }
 
     @Override
-    public Country resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
+    public Country resultsetToObject(ResultSet resultSet, Connection connection) throws SQLException {
         Country country = new Country();
         country.setId(resultSet.getInt("id"));
         country.setCountryName(resultSet.getString("country_name"));

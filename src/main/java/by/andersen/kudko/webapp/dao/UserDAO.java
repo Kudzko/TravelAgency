@@ -56,7 +56,7 @@ public class UserDAO extends AbstractDAO<User, Integer> {
     }
 
     @Override
-    public User resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
+    public User resultsetToObject(ResultSet resultSet, Connection connection) throws SQLException {
         User user = new User();
 
         user.setId(resultSet.getInt("id"));

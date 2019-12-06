@@ -2,7 +2,7 @@ package by.andersen.kudko.webapp.model.entity;
 
 import java.util.Objects;
 
-public class Hotel extends Entity {
+public class Hotel extends BEntity {
     private String hotelName;
     private  int stars;
 

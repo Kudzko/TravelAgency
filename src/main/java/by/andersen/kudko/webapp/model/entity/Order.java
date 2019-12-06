@@ -2,7 +2,7 @@ package by.andersen.kudko.webapp.model.entity;
 
 import java.util.Objects;
 
-public class Order extends Entity {
+public class Order extends BEntity {
 
     private User user;
     private Tour tour;

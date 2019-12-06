@@ -1,6 +1,7 @@
 package by.andersen.kudko.webapp;
 
-import by.andersen.kudko.webapp.dao.*;
+import by.andersen.kudko.webapp.dao.FactoryDAO;
+import by.andersen.kudko.webapp.dao.OrderDAO;
 import by.andersen.kudko.webapp.dao.connection.ConnectionPoolException;
 import by.andersen.kudko.webapp.dao.connection.second.ConnectionPool;
 import by.andersen.kudko.webapp.dao.connection.second.DBParameter;

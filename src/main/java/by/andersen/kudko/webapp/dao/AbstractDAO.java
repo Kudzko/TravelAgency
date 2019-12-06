@@ -2,7 +2,7 @@ package by.andersen.kudko.webapp.dao;
 
 import by.andersen.kudko.webapp.dao.daointerface.IAbstractDAO;
 import by.andersen.kudko.webapp.dao.exception.DAOException;
-import by.andersen.kudko.webapp.model.entity.Entity;
+import by.andersen.kudko.webapp.model.entity.BEntity;
 import lombok.extern.log4j.Log4j2;
 
 import java.lang.reflect.Field;
@@ -13,7 +13,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 @Log4j2
-public abstract class AbstractDAO<E extends Entity, PK extends Integer> implements IAbstractDAO<E, PK> {
+public abstract class AbstractDAO<E extends BEntity, PK extends Integer> implements IAbstractDAO<E, PK> {
     protected Connection conn;
     private Lock lock;
     private FactoryDAO factoryDAO;
@@ -37,7 +37,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
 
     public abstract String getByPKSQL();
 
-    public abstract E resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException;
+    public abstract E resultsetToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException;
 
 
     @Override
@@ -178,7 +178,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
         List<E> entities = new ArrayList<>();
         try {
             while (resultSet.next()) {
-                E entity = resultsetStringToObject(resultSet, conn);
+                E entity = resultsetToObject(resultSet, conn);
                 entities.add(entity);
             }
         } catch (SQLException e) {
@@ -241,7 +241,7 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
                 try {
                     field.setAccessible(true);
                     dao.setConnection(conn);
-                    dao.create((Entity) field.get(e));
+                    dao.create((BEntity) field.get(e));
                 } catch (IllegalAccessException ex) {
                     ex.printStackTrace();
                 } finally {
@@ -271,8 +271,8 @@ public abstract class AbstractDAO<E extends Entity, PK extends Integer> implemen
         return factoryDAO;
     }
 
-    public Entity getDependentEntityById(Class entityClass, Connection connection, Integer id) throws DAOException {
-        Entity entity;
+    public BEntity getDependentEntityById(Class entityClass, Connection connection, Integer id) throws DAOException {
+        BEntity entity;
         FactoryDAO factoryDAO = FactoryDAO.getInstance();
         AbstractDAO dao = factoryDAO.getDAO(entityClass);
         dao.setConnection(connection);

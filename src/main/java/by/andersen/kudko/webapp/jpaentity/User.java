@@ -1,8 +1,20 @@
-package by.andersen.kudko.webapp.model.entity;
+package by.andersen.kudko.webapp.jpaentity;
 
+
+
+import by.andersen.kudko.webapp.model.entity.BEntity;
+
+
+import javax.persistence.*;
 import java.util.Objects;
 
+
+@Entity
+@Table
 public class User extends BEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String name;
     private String surname;
     private String nickName;

@@ -2,13 +2,13 @@ package by.andersen.kudko.webapp.model.entity;
 
 import java.util.Objects;
 
-public class Entity {
+public class BEntity {
     protected int id;
 
-    protected Entity() {
+    protected BEntity() {
     }
 
-    protected Entity(int id) {
+    protected BEntity(int id) {
         this.id = id;
     }
 
@@ -25,7 +25,7 @@ public class Entity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Entity entity = (Entity) o;
+        BEntity entity = (BEntity) o;
         return id == entity.id;
     }
 

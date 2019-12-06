@@ -55,7 +55,7 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
     }
 
     @Override
-    public Hotel resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException {
+    public Hotel resultsetToObject(ResultSet resultSet, Connection connection) throws SQLException {
         Hotel hotel = new Hotel();
         hotel.setId(resultSet.getInt("id"));
         hotel.setHotelName(resultSet.getString("name"));

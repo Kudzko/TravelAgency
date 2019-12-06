@@ -58,7 +58,7 @@ public class OrderDAO extends AbstractDAO<Order, Integer> {
     }
 
     @Override
-    public Order resultsetStringToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException {
+    public Order resultsetToObject(ResultSet resultSet, Connection connection) throws SQLException, DAOException {
         Order order = new Order();
         // gets id
         order.setId(resultSet.getInt("id"));

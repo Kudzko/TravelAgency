@@ -2,7 +2,7 @@ package by.andersen.kudko.webapp.model.entity;
 
 import java.util.Objects;
 
-public class Country extends Entity {
+public class Country extends BEntity {
     private String countryName;
 
     public Country() {
