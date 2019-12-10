@@ -8,9 +8,13 @@
 
     <persistence-unit name="Hibernate_JPA" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+<!--        <mapping-file>/META-INF/mapping.xml</mapping-file>-->
+        <class>by.andersen.kudko.jpaentity.BEntity</class>
+        <class>by.andersen.kudko.jpaentity.Country</class>
+        <class>by.andersen.kudko.jpaentity.Hotel</class>
+        <class>by.andersen.kudko.jpaentity.Order</class>
+        <class>by.andersen.kudko.jpaentity.Tour</class>
         <class>by.andersen.kudko.jpaentity.User</class>
-        <class>by.andersen.kudko.jpaentity.Category</class>
-        <class>by.andersen.kudko.jpaentity.Topic</class>
 
         <properties>
             <property name="hibernate.connection.url"
@@ -22,6 +26,7 @@
             <property name="javax.persistence.schema-generation.database.action"
                         value="none"/>
             <property name="hibernate.show_sql" value="true"/>
+
 
 
             <!--            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/jpa_test?serverTimezone=UTC"/>-->

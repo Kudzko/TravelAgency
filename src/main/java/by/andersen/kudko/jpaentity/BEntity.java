@@ -1,10 +1,14 @@
-package by.andersen.kudko.model.entity;
+package by.andersen.kudko.jpaentity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
-
+@Entity
+@Table
+@Inheritance( strategy = InheritanceType.JOINED )
 public class BEntity {
-
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     protected int id;
 
     protected BEntity() {

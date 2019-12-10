@@ -14,9 +14,7 @@ import java.sql.*;
 
 @Log4j2
 public class Test {
-    public static void main(String[] args) {
-
-
+    public static void executeDAO(){
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
 
         String dbDriver = dbResourceManager.getValue(DBParameter.DRIVER);
@@ -78,6 +76,16 @@ public class Test {
             e.printStackTrace();
         }
 
+
+    }
+
+
+    public void executeJPADAO(){
+        FactoryDAO factoryDAO = FactoryDAO.getInstance();
+    }
+    public static void main(String[] args) {
+
+        executeDAO();
 
     }
 }

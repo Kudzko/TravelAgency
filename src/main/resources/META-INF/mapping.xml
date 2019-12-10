@@ -1,4 +1,4 @@
-<? xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -7,23 +7,24 @@
                  version="1.0">
 
     <description> XML Mapping file</description>
-
+    <package>by.andersen.kudko.jpaentity</package>
     <entity class="User">
         <table name="user"/>
         <attributes>
 
             <id name="id">
-                <generated-value strategy="TABLE"/>
+                <generated-value strategy="IDENTITY"/>
             </id>
 
             <basic name="name">
-                <column name="EMP_NAME" length="100"/>
+                <column name="name" length="100"/>
             </basic>
 
             <basic name="surname">
             </basic>
 
-            <basic name="nickname">
+            <basic name="nickName">
+                <column name="nickname" length="100"/>
             </basic>
 
         </attributes>

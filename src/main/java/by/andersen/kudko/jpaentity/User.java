@@ -2,22 +2,20 @@ package by.andersen.kudko.jpaentity;
 
 
 
-import by.andersen.kudko.model.entity.BEntity;
+import by.andersen.kudko.jpaentity.BEntity;
 
 
 import javax.persistence.*;
 import java.util.Objects;
 
-
 @Entity
 @Table
+@NamedQuery(name = "find user by name", query = "SELECT u FROM User u WHERE u.name = :name")
 public class User extends BEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
     private String name;
     private String surname;
     private String nickName;
+
 
     public User() {
     }
