@@ -1,8 +1,14 @@
 package by.andersen.kudko.jpaentity;
 
-import javax.persistence.*;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Objects;
 
+@Data
 @Entity
 @Table
 public class Tour extends BEntity {
@@ -31,31 +37,6 @@ public class Tour extends BEntity {
         this.country = country;
         this.review = review;
     }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public String getReview() {
-        return review;
-    }
-
-    public void setReview(String review) {
-        this.review = review;
-    }
-
 
     @Override
     public boolean equals(Object o) {

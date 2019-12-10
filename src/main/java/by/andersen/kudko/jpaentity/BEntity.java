@@ -1,8 +1,11 @@
 package by.andersen.kudko.jpaentity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Data
 @Entity
 @Table
 @Inheritance( strategy = InheritanceType.JOINED )
@@ -17,15 +20,6 @@ public class BEntity {
     protected BEntity(int id) {
         this.id = id;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 
     @Override
     public boolean equals(Object o) {

@@ -1,11 +1,15 @@
 package by.andersen.kudko.jpaentity;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Objects;
 
+
+@Data
 @Entity
 @Table(name = "travel_agency.order")
 public class Order extends BEntity {
@@ -28,22 +32,6 @@ public class Order extends BEntity {
     public Order(int id, User user, Tour tour) {
         super(id);
         this.user = user;
-        this.tour = tour;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Tour getTour() {
-        return tour;
-    }
-
-    public void setTour(Tour tour) {
         this.tour = tour;
     }
 

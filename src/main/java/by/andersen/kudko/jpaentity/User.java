@@ -1,13 +1,14 @@
 package by.andersen.kudko.jpaentity;
 
 
+import lombok.Data;
 
-import by.andersen.kudko.jpaentity.BEntity;
-
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import java.util.Objects;
 
+@Data
 @Entity
 @Table
 @NamedQuery(name = "find user by name", query = "SELECT u FROM User u WHERE u.name = :name")
@@ -30,30 +31,6 @@ public class User extends BEntity {
     public User(String name, String surname, String nickName) {
         this.name = name;
         this.surname = surname;
-        this.nickName = nickName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
         this.nickName = nickName;
     }
 

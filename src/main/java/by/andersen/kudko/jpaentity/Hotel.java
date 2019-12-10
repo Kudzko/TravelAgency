@@ -1,10 +1,13 @@
 package by.andersen.kudko.jpaentity;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Objects;
 
+@Data
 @Entity
 @Table
 public class Hotel extends BEntity {
@@ -26,21 +29,6 @@ public class Hotel extends BEntity {
         this.stars = stars;
     }
 
-    public String getHotelName() {
-        return hotelName;
-    }
-
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
-    }
-
-    public int getStars() {
-        return stars;
-    }
-
-    public void setStars(int stars) {
-        this.stars = stars;
-    }
 
     @Override
     public boolean equals(Object o) {

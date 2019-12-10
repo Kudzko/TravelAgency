@@ -17,10 +17,8 @@ public class UserDAO extends AbstractDAO<User, Integer> implements IUserDAO {
 
     @Override
     public List<User> findByName(String name) {
-        List<User> users;
         Query query = entityManager.createNamedQuery("find user by name");
         query.setParameter("name", name);
-        users = query.getResultList();
-        return users;
+        return query.getResultList();
     }
 }

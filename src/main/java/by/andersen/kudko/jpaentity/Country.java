@@ -1,10 +1,13 @@
 package by.andersen.kudko.jpaentity;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Objects;
 
+@Data
 @Entity
 @Table
 public class Country extends BEntity {
@@ -23,13 +26,6 @@ public class Country extends BEntity {
         this.countryName = countryName;
     }
 
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
 
     @Override
     public boolean equals(Object o) {
