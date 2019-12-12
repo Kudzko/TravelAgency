@@ -17,6 +17,9 @@
                 <configuration>
                     <source>8</source>
                     <target>8</target>
+<!--                    <compilerArguments>-->
+<!--                        <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>-->
+<!--                    </compilerArguments>-->
                 </configuration>
             </plugin>
         </plugins>
@@ -76,6 +79,17 @@
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
+        </dependency>
+
+
+
+<!--        Generation metamodel of classes automatically-->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-jpamodelgen -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>5.4.10.Final</version>
+            <scope>provided</scope>
         </dependency>
 
 
