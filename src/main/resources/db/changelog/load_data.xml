@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Alex" id="07022020T5" runOnChange="true">
+        <loadUpdateData
+                encoding="UTF-8"
+                file="../data/test_schema_user.csv"
+                onlyUpdate="true"
+                primaryKey="iduser"
+                relativeToChangelogFile="true"
+                schemaName="test_schema"
+                separator=","
+                tableName="user">
+            <column name="name" type="STRING"/>
+            <column name="surname" type="STRING"/>
+            <column name="login" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+</databaseChangeLog>
