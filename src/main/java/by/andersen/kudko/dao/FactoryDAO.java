@@ -49,11 +49,7 @@ public class FactoryDAO implements IFactoryDAO {
 
     /**
      * daoObjects.put(Order.class, new DAOCreator() {
-     *             @Override
-     *             public AbstractDAO create() {
-     *                 return new OrderDAO();
-     *             }
-     *         });
+     *
      * @param clazz
      * @param dao
      */
@@ -62,12 +58,12 @@ public class FactoryDAO implements IFactoryDAO {
     }
 
     @Override
-    public AbstractDAO getDAO(Class entityClass){
+    public AbstractDAO getDAO(Class entityClass) {
         AbstractDAO dao = null;
-      DAOCreator daoObject = daoObjects.get(entityClass);
-      if (daoObject != null){
-          dao = daoObject.create();
-      }
+        DAOCreator daoObject = daoObjects.get(entityClass);
+        if (daoObject != null) {
+            dao = daoObject.create();
+        }
         return dao;
     }
 }

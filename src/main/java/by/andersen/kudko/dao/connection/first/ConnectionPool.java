@@ -39,6 +39,7 @@ public class ConnectionPool {
 
     /**
      * returns connection
+     *
      * @return
      */
     public Connection getConnection() {
@@ -62,7 +63,7 @@ public class ConnectionPool {
 
 
         try {
-            if (!connection.isValid(0)){
+            if (!connection.isValid(0)) {
                 allConnections.remove(connection);
                 counterConnections.decrementAndGet();
                 connection = getConnection();
@@ -94,6 +95,7 @@ public class ConnectionPool {
 
     /**
      * method returns connection into connection pool
+     *
      * @param connection
      */
     public void returnConnection(Connection connection) {

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="creation_order_table" author="Alex">
+        <createTable tableName="order"
+                     schemaName="travel_agency">
+            <column name="id"
+                    type="BIGINT"
+                    autoIncrement="true">
+                <constraints nullable="true" primaryKey="true" primaryKeyName="id"/>
+            </column>
+            <column name="user_id"
+                    type="BIGINT"/>
+            <column name="tour_id"
+                    type="BIGINT"/>
+            <column name="order_date"
+                    type="DATE"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

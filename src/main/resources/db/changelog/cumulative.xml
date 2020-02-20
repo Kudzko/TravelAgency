@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+<!--    <include file="create_schema_travel_agency.xml" relativeToChangelogFile="true"/>-->
+
+    <include file="bentity_table.xml" relativeToChangelogFile="true"/>
+    <include file="country_table.xml" relativeToChangelogFile="true"/>
+    <include file="hotel_table.xml" relativeToChangelogFile="true"/>
+    <include file="order_table.xml" relativeToChangelogFile="true"/>
+    <include file="tour_table.xml" relativeToChangelogFile="true"/>
+    <include file="user_table.xml" relativeToChangelogFile="true"/>
+
+    <include file="load_test_data.xml"  relativeToChangelogFile="true"/>
+
+<!--    <include file="changeset.xml" relativeToChangelogFile="true"/>-->
+<!--    <include file="load_data.xml"  relativeToChangelogFile="true"/>-->
+<!--    <include file="test.xml"  relativeToChangelogFile="true"/>-->
+
+</databaseChangeLog>
+
+

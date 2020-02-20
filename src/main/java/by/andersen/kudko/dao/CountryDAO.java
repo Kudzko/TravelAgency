@@ -37,6 +37,7 @@ public class CountryDAO extends AbstractDAO<Country, Integer> {
     private void countryDescription(Country entity, PreparedStatement prpStmt) throws SQLException {
         prpStmt.setString(1, entity.getCountryName());
     }
+
     @Override
     public String deleteSql() {
         return DELETE_BY_ID;

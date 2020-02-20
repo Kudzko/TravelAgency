@@ -110,7 +110,7 @@ public final class ConnectionPool {
         Connection con = null;
 
         //if pool wasn't inited before, we init one right now
-        if (!isInited){
+        if (!isInited) {
             initPoolData();
         }
 

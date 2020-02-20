@@ -1,0 +1,66 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Alex" id="test_data" runOnChange="true" failOnError="true">
+        <loadUpdateData
+                encoding="UTF-8"
+                file="../data/coutry.csv"
+                primaryKey="id"
+                relativeToChangelogFile="true"
+                schemaName="travel_agency"
+                separator=","
+                tableName="country">
+            <column name="country_name" type="STRING"/>
+        </loadUpdateData>
+        <loadUpdateData
+                encoding="UTF-8"
+                file="../data/hotel.csv"
+                primaryKey="id"
+                relativeToChangelogFile="true"
+                schemaName="travel_agency"
+                separator=","
+                tableName="hotel">
+            <column name="name" type="STRING"/>
+            <column name="stars" />
+        </loadUpdateData>
+        <loadUpdateData
+                encoding="UTF-8"
+                file="../data/order.csv"
+                primaryKey="id"
+                relativeToChangelogFile="true"
+                schemaName="travel_agency"
+                separator=","
+                tableName="order">
+            <column name="user_id"/>
+            <column name="tour_id"/>
+            <column name="order_date" type="DATE"/>
+        </loadUpdateData>
+        <loadUpdateData
+                encoding="UTF-8"
+                file="../data/tour.csv"
+                primaryKey="id"
+                relativeToChangelogFile="true"
+                schemaName="travel_agency"
+                separator=","
+                tableName="tour">
+            <column name="country_id" type="NUMERIC"/>
+            <column name="hotel_id" type="NUMERIC"/>
+            <column name="review" type="STRING"/>
+        </loadUpdateData>
+        <loadUpdateData
+                encoding="UTF-8"
+                file="../data/user.csv"
+                primaryKey="id"
+                relativeToChangelogFile="true"
+                schemaName="travel_agency"
+                separator=","
+                tableName="user">
+            <column name="name" type="STRING"/>
+            <column name="surname" type="STRING"/>
+            <column name="nickname" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+</databaseChangeLog>
