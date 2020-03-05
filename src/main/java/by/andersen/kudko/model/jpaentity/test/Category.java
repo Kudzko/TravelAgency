@@ -1,4 +1,4 @@
-package by.andersen.kudko.jpaentity.test;
+package by.andersen.kudko.model.jpaentity.test;
 
 
 import javax.persistence.Entity;

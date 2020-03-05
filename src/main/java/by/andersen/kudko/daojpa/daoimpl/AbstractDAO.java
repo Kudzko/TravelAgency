@@ -2,7 +2,7 @@ package by.andersen.kudko.daojpa.daoimpl;
 
 import by.andersen.kudko.daojpa.daointerface.IAbstractDAO;
 import by.andersen.kudko.daojpa.exception.DAOException;
-import by.andersen.kudko.jpaentity.BEntity;
+import by.andersen.kudko.model.jpaentity.BEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

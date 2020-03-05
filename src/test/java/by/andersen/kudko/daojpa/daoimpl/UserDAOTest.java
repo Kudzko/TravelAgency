@@ -1,7 +1,7 @@
 package by.andersen.kudko.daojpa.daoimpl;
 
 import by.andersen.kudko.daojpa.exception.DAOException;
-import by.andersen.kudko.jpaentity.User;
+import by.andersen.kudko.model.jpaentity.User;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.BeforeClass;

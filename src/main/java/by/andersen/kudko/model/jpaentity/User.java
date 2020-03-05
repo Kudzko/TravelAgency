@@ -1,9 +1,7 @@
-package by.andersen.kudko.jpaentity;
+package by.andersen.kudko.model.jpaentity;
 
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;

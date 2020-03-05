@@ -1,7 +1,5 @@
-package by.andersen.kudko.jpaentity.test;
+package by.andersen.kudko.model.jpaentity.test;
 
-
-import by.andersen.kudko.jpaentity.test.Category;
 
 public class Topic {
     private Category category;

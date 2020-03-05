@@ -1,7 +1,7 @@
 package by.andersen.kudko.daojpa.daointerface;
 
 import by.andersen.kudko.daojpa.exception.DAOException;
-import by.andersen.kudko.jpaentity.BEntity;
+import by.andersen.kudko.model.jpaentity.BEntity;
 
 public interface IAbstractDAO<E extends BEntity,
         PK extends Integer> {

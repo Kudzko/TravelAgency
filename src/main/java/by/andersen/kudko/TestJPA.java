@@ -3,7 +3,7 @@ package by.andersen.kudko;
 import by.andersen.kudko.daojpa.daoimpl.FactoryDAO;
 import by.andersen.kudko.daojpa.daoimpl.UserDAO;
 import by.andersen.kudko.daojpa.exception.DAOException;
-import by.andersen.kudko.jpaentity.*;
+import by.andersen.kudko.model.jpaentity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

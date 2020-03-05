@@ -7,7 +7,7 @@
                  version="1.0">
 
     <description> XML Mapping file</description>
-    <package>by.andersen.kudko.jpaentity</package>
+    <package>by.andersen.kudko.model.jpaentity</package>
     <entity class="User">
         <table name="user"/>
         <attributes>

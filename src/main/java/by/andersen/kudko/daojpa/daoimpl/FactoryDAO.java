@@ -2,7 +2,7 @@ package by.andersen.kudko.daojpa.daoimpl;
 
 
 import by.andersen.kudko.daojpa.daointerface.IFactoryDAO;
-import by.andersen.kudko.jpaentity.*;
+import by.andersen.kudko.model.jpaentity.*;
 
 import java.util.HashMap;
 import java.util.Map;

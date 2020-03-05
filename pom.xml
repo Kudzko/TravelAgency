@@ -18,6 +18,7 @@
         <liquibase.port>3306</liquibase.port>
         <liquibase.schema>test_schema</liquibase.schema>
         <liquibase.serverTimezone>UTC</liquibase.serverTimezone>
+        <spring.version>5.2.4.RELEASE</spring.version>
     </properties>
 
 
@@ -31,9 +32,6 @@
                     <encoding>UTF-8</encoding>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <!--                    <compilerArguments>-->
-                    <!--                        <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>-->
-                    <!--                    </compilerArguments>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -69,8 +67,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
 
 
         </plugins>
@@ -164,6 +160,36 @@
             <artifactId>liquibase-core</artifactId>
             <version>3.8.5</version>
         </dependency>
+
+        <!--        SPRING FRAMEWORK-->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+            <version>3.0.11.RELEASE</version>
+        </dependency>
+
+
+
+
 
 
     </dependencies>

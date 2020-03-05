@@ -1,8 +1,8 @@
 package by.andersen.kudko.daojpa.daoimpl;
 
 import by.andersen.kudko.daojpa.daointerface.IUserDAO;
-import by.andersen.kudko.jpaentity.User;
-import by.andersen.kudko.jpaentity.User_;
+import by.andersen.kudko.model.jpaentity.User;
+import by.andersen.kudko.model.jpaentity.User_;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

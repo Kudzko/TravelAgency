@@ -1,6 +1,6 @@
 package by.andersen.kudko.daojpa.daointerface;
 
-import by.andersen.kudko.jpaentity.User;
+import by.andersen.kudko.model.jpaentity.User;
 
 import java.util.List;
 
