@@ -8,10 +8,10 @@ import java.util.Objects;
 @Data
 @Entity
 @Table
-@Inheritance( strategy = InheritanceType.JOINED )
+@Inheritance(strategy = InheritanceType.JOINED)
 public class BEntity {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
 
     protected BEntity() {

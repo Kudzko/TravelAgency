@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="Alex" id="07022020T5" runOnChange="true">
+    <changeSet author="Alex" id="07022020T5" runOnChange="true" failOnError="true">
         <loadUpdateData
                 encoding="UTF-8"
                 file="../data/test_schema_user.csv"

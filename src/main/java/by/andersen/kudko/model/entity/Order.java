@@ -1,11 +1,13 @@
 package by.andersen.kudko.model.entity;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Order extends BEntity {
 
     private User user;
     private Tour tour;
+    private Date date;
 
     public Order() {
     }

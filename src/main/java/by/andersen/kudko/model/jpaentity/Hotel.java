@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Hotel extends BEntity {
     @Column(name = "name")
     private String hotelName;
-    private  int stars;
+    private int stars;
 
     public Hotel() {
     }

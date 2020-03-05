@@ -1,6 +1,7 @@
 package by.andersen.kudko;
 
 import by.andersen.kudko.daojpa.daoimpl.FactoryDAO;
+import by.andersen.kudko.daojpa.daoimpl.OrderDAO;
 import by.andersen.kudko.daojpa.daoimpl.UserDAO;
 import by.andersen.kudko.daojpa.exception.DAOException;
 import by.andersen.kudko.model.jpaentity.*;
@@ -71,12 +72,22 @@ public class TestJPA {
         System.out.println(entityManager.find(User.class, 87));
     }
 
-    public static void findUsersByName(){
+    public static void findUsersByName() {
         FactoryDAO factoryDAO = FactoryDAO.getInstance();
         UserDAO userDAO = (UserDAO) factoryDAO.getDAO(User.class);
-        System.out.println(userDAO.findByName("Vasya"));
+        System.out.println( "result" );
+        System.out.println( userDAO.findByName("Vasya").getClass() );
 
     }
+
+    public static void maxDate() {
+        FactoryDAO factoryDAO = FactoryDAO.getInstance();
+        OrderDAO orderDAO = (OrderDAO) factoryDAO.getDAO(Order.class);
+        System.out.println( "Date: " );
+        System.out.println( orderDAO.getMaxDate().getClass() );
+    }
+
+
     public static void main(String[] args) {
 //        test1();
         //  testJPAMethod();
@@ -84,6 +95,6 @@ public class TestJPA {
 //         findTest();
 //        jpqlTest();
 
-        findUsersByName();
+        maxDate();
     }
 }

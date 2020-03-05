@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Hotel extends BEntity {
     private String hotelName;
-    private  int stars;
+    private int stars;
 
     public Hotel() {
     }

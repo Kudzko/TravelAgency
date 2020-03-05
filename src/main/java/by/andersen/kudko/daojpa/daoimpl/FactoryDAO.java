@@ -7,7 +7,7 @@ import by.andersen.kudko.model.jpaentity.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FactoryDAO implements IFactoryDAO{
+public class FactoryDAO implements IFactoryDAO {
 
     private static final FactoryDAO instance = new FactoryDAO();
     private Map<Class, DAOCreator> daoObjects;
@@ -38,12 +38,12 @@ public class FactoryDAO implements IFactoryDAO{
 //                return new TourDAO();
 //            }
 //        });
-//        daoObjects.put(Order.class, new DAOCreator() {
-//            @Override
-//            public AbstractDAO create() {
-//                return new OrderDAO();
-//            }
-//        });
+        daoObjects.put(Order.class, new DAOCreator() {
+            @Override
+            public AbstractDAO create() {
+                return new OrderDAO();
+            }
+        });
     }
 
     public static FactoryDAO getInstance() {
@@ -52,11 +52,7 @@ public class FactoryDAO implements IFactoryDAO{
 
     /**
      * daoObjects.put(Order.class, new DAOCreator() {
-     *             @Override
-     *             public AbstractDAO create() {
-     *                 return new OrderDAO();
-     *             }
-     *         });
+     *
      * @param clazz
      * @param dao
      */
@@ -65,10 +61,10 @@ public class FactoryDAO implements IFactoryDAO{
     }
 
     @Override
-    public AbstractDAO getDAO(Class entityClass){
+    public AbstractDAO getDAO(Class entityClass) {
         AbstractDAO dao = null;
         DAOCreator daoObject = daoObjects.get(entityClass);
-        if (daoObject != null){
+        if (daoObject != null) {
             dao = daoObject.create();
         }
         return dao;

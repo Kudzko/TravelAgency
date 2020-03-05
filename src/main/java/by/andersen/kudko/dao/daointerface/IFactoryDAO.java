@@ -3,7 +3,7 @@ package by.andersen.kudko.dao.daointerface;
 import by.andersen.kudko.dao.AbstractDAO;
 
 public interface IFactoryDAO {
-    interface DAOCreator{
+    interface DAOCreator {
         AbstractDAO create();
     }
 

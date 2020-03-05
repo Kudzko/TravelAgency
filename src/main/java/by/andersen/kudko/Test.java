@@ -14,7 +14,7 @@ import java.sql.*;
 
 @Log4j2
 public class Test {
-    public static void executeDAO(){
+    public static void executeDAO() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
 
         String dbDriver = dbResourceManager.getValue(DBParameter.DRIVER);
@@ -62,7 +62,6 @@ public class Test {
                 orderDAO.removeConnection();
 
 
-
             } catch (ConnectionPoolException e) {
                 e.printStackTrace();
             } catch (DAOException e) {
@@ -80,9 +79,10 @@ public class Test {
     }
 
 
-    public void executeJPADAO(){
+    public void executeJPADAO() {
         FactoryDAO factoryDAO = FactoryDAO.getInstance();
     }
+
     public static void main(String[] args) {
 
         executeDAO();

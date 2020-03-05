@@ -18,6 +18,7 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
     public String createQuery() {
         return INSERT_USER;
     }
+
     @Override
     public void createPrpStmt(Hotel entity, PreparedStatement prpStmt) throws SQLException {
         hotelDescription(entity, prpStmt);

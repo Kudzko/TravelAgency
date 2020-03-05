@@ -2,12 +2,13 @@ package by.andersen.kudko.model.jpaentity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
+@NamedQueries({
+        @NamedQuery(name = "order.maxDate", query = "SELECT MAX(o.orderDate) FROM Order o")
+})
 
 @Data
 @Entity
@@ -20,6 +21,9 @@ public class Order extends BEntity {
     @ManyToOne
     @JoinColumn(name = "tour_id")
     private Tour tour;
+
+    @Column(name = "order_date")
+    private Date orderDate;
 
     public Order() {
     }
