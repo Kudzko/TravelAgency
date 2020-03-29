@@ -195,6 +195,14 @@
             <artifactId>thymeleaf-spring5</artifactId>
             <version>3.0.11.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
 
 
 
