@@ -8,7 +8,7 @@
 
     <description> XML Mapping file</description>
     <package>by.andersen.kudko.model.jpaentity</package>
-    <entity class="User">
+    <entity class="by.andersen.kudko.domain.User">
         <table name="user"/>
         <attributes>
 

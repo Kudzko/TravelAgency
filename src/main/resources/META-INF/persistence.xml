@@ -9,12 +9,12 @@
     <persistence-unit name="Hibernate_JPA" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 <!--        <mapping-file>/META-INF/mapping.xml</mapping-file>-->
-        <class>by.andersen.kudko.model.jpaentity.BEntity</class>
-        <class>by.andersen.kudko.model.jpaentity.Country</class>
-        <class>by.andersen.kudko.model.jpaentity.Hotel</class>
-        <class>by.andersen.kudko.model.jpaentity.Order</class>
-        <class>by.andersen.kudko.model.jpaentity.Tour</class>
-        <class>by.andersen.kudko.model.jpaentity.User</class>
+        <class>by.andersen.kudko.domain.BEntity</class>
+        <class>by.andersen.kudko.domain.Country</class>
+        <class>by.andersen.kudko.domain.Hotel</class>
+        <class>by.andersen.kudko.domain.Order</class>
+        <class>by.andersen.kudko.domain.Tour</class>
+        <class>by.andersen.kudko.domain.User</class>
 
         <properties>
             <property name="hibernate.connection.url"
