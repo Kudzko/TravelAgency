@@ -5,23 +5,37 @@
     <title>Title</title>
 </head>
 
-<header th:include="footer :: footer"/>
-
 <body>
 
-<div class="container">
-    <div th:include = "left_side :: left_side" class="left-side"/>
+<header th:include="template/header :: header"/>
 
-    <div class="main-content">
-        div4
+<main>
+    <div class="container">
+        <div th:include="template/left_side :: left_side" class="left-side"/>
+
+        <div class="main-content">
+            <h1>Product list</h1>
+
+            <table>
+                <tr>
+                    <th>NAME</th>
+                    <th>SURNAME</th>
+                    <th>NICKNAME</th>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.name}">Onions</td>
+                    <td th:text="${user.surname}">2.41</td>
+                    <td th:text="${user.nickName}">yes</td>
+                </tr>
+            </table>
+        </div>
+
+        <div th:include="template/right_side :: right_side" class="right-side"/>
+
     </div>
+</main>
 
-    <div  th:include = "right_side :: right_side" class="right-side"/>
-
-</div>
-
+<div th:replace="template/footer :: footer"></div>
 </body>
-
-<footer th:include="footer :: footer"/>
 
 </html>

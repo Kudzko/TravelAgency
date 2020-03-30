@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+
+<div th:fragment = "main_content" class="main-content">
+    <h1>USERS!!!!!!!!!!!!</h1>
+
+    <table>
+        <tr>
+            <th>NAME</th>
+            <th>SURNAME</th>
+            <th>NICKNAME</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}">Onions</td>
+            <td th:text="${user.surname}">2.41</td>
+            <td th:text="${user.nickname}">yes</td>
+        </tr>
+    </table>
+</div>
+
+</div>
+</body>
+</html>

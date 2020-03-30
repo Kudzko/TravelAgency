@@ -5,23 +5,28 @@
     <title>Title</title>
 </head>
 
-<header th:include="footer :: footer"/>
 
-<body>
+<body th:fragment = "template_page(page_name)">
 
-<div class="container">
-    <div th:include = "left_side :: left_side" class="left-side"/>
+<header th:include="template/header :: header"/>
 
-    <div class="main-content">
-        div4
+<main>
+    <div class="container">
+        <div th:include="template/left_side :: left_side" class="left-side"/>
+
+        <div class="main-content">
+            <div th:replace = "${page_name}:main_content"></div>
+            div4
+        </div>
+
+        <div th:include="template/right_side :: right_side" class="right-side"/>
+
     </div>
+</main>
 
-    <div  th:include = "right_side :: right_side" class="right-side"/>
-
-</div>
+<footer th:include="template/footer :: footer"/>
 
 </body>
 
-<footer th:include="footer :: footer"/>
 
 </html>
