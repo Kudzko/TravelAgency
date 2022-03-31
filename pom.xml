@@ -18,7 +18,7 @@
         <liquibase.port>3306</liquibase.port>
         <liquibase.schema>travel_agency</liquibase.schema>
         <liquibase.serverTimezone>UTC</liquibase.serverTimezone>
-        <spring.version>5.2.4.RELEASE</spring.version>
+        <spring.version>5.3.18</spring.version>
     </properties>
 
 
